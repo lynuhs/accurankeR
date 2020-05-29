@@ -8,12 +8,13 @@ accuranker_auth(
   client_id = Sys.getenv("ACCURANKER_CLIENT_ID"),
   client_secret = Sys.getenv("ACCURANKER_CLIENT_SECRET"),
   token = NULL,
-  new_user = FALSE
+  new_user = FALSE,
+  silent = FALSE
 )
 }
 \description{
 Enter your token that can be found on https://app.accuranker.com/app/profile.
 }
 \examples{
-accuranker_auth(client_id = Sys.getenv("ACCURANKER_CLIENT_ID"), client_secret = Sys.getenv("ACCURANKER_CLIENT_SECRET"), token = NULL, new_user = FALSE)
+accuranker_auth(client_id = Sys.getenv("ACCURANKER_CLIENT_ID"), client_secret = Sys.getenv("ACCURANKER_CLIENT_SECRET"), token = NULL, new_user = FALSE, silent = FALSE)
 }

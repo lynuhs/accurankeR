@@ -18,8 +18,8 @@ AccurankerAuth <- R6::R6Class(
 #'
 #' @export
 #' @examples
-#' accuranker_auth(client_id = Sys.getenv("ACCURANKER_CLIENT_ID"), client_secret = Sys.getenv("ACCURANKER_CLIENT_SECRET"), token = NULL, new_user = FALSE)
-accuranker_auth <- function(client_id = Sys.getenv("ACCURANKER_CLIENT_ID"), client_secret = Sys.getenv("ACCURANKER_CLIENT_SECRET"), token = NULL, new_user = FALSE) {
+#' accuranker_auth(client_id = Sys.getenv("ACCURANKER_CLIENT_ID"), client_secret = Sys.getenv("ACCURANKER_CLIENT_SECRET"), token = NULL, new_user = FALSE, silent = FALSE)
+accuranker_auth <- function(client_id = Sys.getenv("ACCURANKER_CLIENT_ID"), client_secret = Sys.getenv("ACCURANKER_CLIENT_SECRET"), token = NULL, new_user = FALSE, silent = FALSE) {
   options("accurankeR.oauth_cache" = ifelse(is.null(getOption("accurankeR.oauth_cache")),
                                             ifelse(is.null(token), "accurankeR.httr-oauth", token),
                                             getOption("accurankeR.oauth_cache")))
@@ -91,7 +91,10 @@ accuranker_auth <- function(client_id = Sys.getenv("ACCURANKER_CLIENT_ID"), clie
 
   check_existing_token()$is_valid
 
-  cat(crayon::green("Successfully authenticated Accuranker API!\n"))
+  if(!silent){
+    cat(crayon::green("Successfully authenticated Accuranker API!\n"))
+  }
+
   return(invisible(token))
 }
 
