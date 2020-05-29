@@ -30,9 +30,11 @@ accuranker_keywords <- function(domain_name, silent = FALSE, simple_token = NULL
 
     if(!silent){cat(crayon::red("Fetching keywords from Accuranker\n"))}
 
+    domain_id <- domain_list[which(domain_list$domainName == domain_name), 'domainId']
+
     request <- paste0(
       "domains/",
-      domain_list[which(domain_list$domainName == domain_name), 'domainId'],
+      domain_id,
       "/keywords/?fields=",
       "id,",
       "keyword,",
@@ -57,6 +59,7 @@ accuranker_keywords <- function(domain_name, silent = FALSE, simple_token = NULL
         keywords,
         cbind(
           data.frame(
+            domain_id = domain_id,
             keyword_id = data[[k]]$id,
             keyword = data[[k]]$keyword,
             is_starred = data[[k]]$starred,
