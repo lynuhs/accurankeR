@@ -61,7 +61,7 @@ accuranker_competitor_ranks <- function(domain_name, date_range = "TODAY", silen
     )))
   }
 
-
+  rankings <- NULL
 
   tryCatch({
     for (l in 1:loops) {
@@ -101,8 +101,6 @@ accuranker_competitor_ranks <- function(domain_name, date_range = "TODAY", silen
       )
 
       data <- accuranker_fetch(request, simple_token = simple_token)
-
-      rankings <- NULL
 
       for (k in 1:(length(data))) {
         single_rank <- NULL
