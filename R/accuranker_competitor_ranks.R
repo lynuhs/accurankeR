@@ -93,7 +93,7 @@ accuranker_competitor_ranks <- function(domain_name, date_range = "TODAY", silen
         domain_list[which(domain_list$domainName == domain_name), 'domainId'],
         "/keywords/?fields=",
         "id,",
-        "competitor_ranks.rank,",
+        "competitor_ranks,",
         "&period_from=",
         startDate,
         "&period_to=",
