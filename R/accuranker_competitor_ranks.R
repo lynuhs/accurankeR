@@ -43,6 +43,11 @@ accuranker_competitor_ranks <- function (domain_name, date_range = "TODAY", sile
   dates <- seq.Date(as.Date(date_range[1]), as.Date(date_range[2]), 
                     1)
   
+  competitors <- accuranker_custom_api(paste0("domains/", domain_list[which(domain_list$domainName == domain_name), 'domainId'][1],"/?fields=competitors"), simple_token = simple_token)
+  if(length(competitors$competitors) == 0){
+    return(0)
+  }
+
   days <- 1
   loops <- ceiling(length(dates)/days)
   if (loops > 1 & !silent) {
